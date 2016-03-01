@@ -23,59 +23,55 @@
 #
 
 class midonet::repository::ubuntu (
-    $midonet_repo,
-    $midonet_stage,
-    $midonet_openstack_repo,
-    $midonet_thirdparty_repo,
-    $midonet_key,
-    $midonet_key_url,
-    $openstack_release)
-    {
-        # Adding repository for ubuntu
-        notice('Adding midonet sources for Debian-like distribution')
-        if $::lsbdistrelease == '14.04' or $::lsbdistrelease == '12.04' {
-            if $::lsbdistrelease == '12.04' and $openstack_release == 'juno' {
-                fail ('Ubuntu 12.04 only supports icehouse')
-            }
-            notice('Adding midonet sources for Debian-like distribution')
-
-            include apt
-            include apt::update
-
-            # Update the package list each time a package is defined. That takes
-            # time, but it ensures it will not fail for out of date repository info
-            # Exec['apt_update'] -> Package<| |>
-
-            apt::source {'midonet':
-                comment     => 'Midonet apt repository',
-                location    => $midonet_repo,
-                release     => $midonet_stage,
-                key         => $midonet_key,
-                key_source  => $midonet_key_url,
-                include_src => false,
-            }
-
-            apt::source {'midonet-openstack-integration':
-                comment     => 'Midonet apt plugin repository',
-                location    => $midonet_openstack_repo,
-                release     => $midonet_stage,
-                include_src => false,
-            }
-
-            # Dummy exec to wrap apt_update
-            exec {'update-midonet-repos':
-                command => '/bin/true',
-                require => [Exec['apt_update'],
-                            Apt::Source['midonet'],
-                            Apt::Source['midonet-openstack-integration']]
-
-            }
-
-            Apt::Source<| |> -> Exec<| title == 'update-midonet-repos' |>
-
-        }
-        else
-        {
-            fail("${::lsbdistid} ${::lsbdistrelease} version not supported")
-        }
+  $midonet_repo,
+  $midonet_stage,
+  $midonet_openstack_repo,
+  $midonet_thirdparty_repo,
+  $midonet_key,
+  $midonet_key_url,
+  $openstack_release)
+{
+  # Adding repository for ubuntu
+  notice('Adding midonet sources for Debian-like distribution')
+  if $::lsbdistrelease == '14.04' or $::lsbdistrelease == '12.04' {
+    if $::lsbdistrelease == '12.04' and $openstack_release == 'juno' {
+      fail ('Ubuntu 12.04 only supports icehouse')
     }
+    notice('Adding midonet sources for Debian-like distribution')
+
+    include apt
+    include apt::update
+
+    # Update the package list each time a package is defined. That takes
+    # time, but it ensures it will not fail for out of date repository info
+    # Exec['apt_update'] -> Package<| |>
+
+    apt::source {'midonet':
+      comment     => 'Midonet apt repository',
+      location    => $midonet_repo,
+      release     => $midonet_stage,
+      key         => $midonet_key,
+      key_source  => $midonet_key_url,
+      include_src => false,
+    }
+
+    apt::source {'midonet-openstack-integration':
+      comment     => 'Midonet apt plugin repository',
+      location    => $midonet_openstack_repo,
+      release     => $midonet_stage,
+      include_src => false,
+    }
+
+    apt::source {'midonet-third-party':
+      comment     => 'MidoNet 3rd Party Tools and Libraries repository',
+      location    => $midonet_thirdparty_repo,
+      release     => $midonet_stage,
+      include_src => false,
+    }
+  }
+
+  else
+  {
+    fail("${::lsbdistid} ${::lsbdistrelease} version not supported")
+  }
+}
