@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "bad4c104_d8e2e302",
+        "filename": "manifests/repository/ubuntu.pp",
+        "patchSetId": 1
+      },
+      "lineNbr": 83,
+      "author": {
+        "id": 1000077
+      },
+      "writtenOn": "2016-03-02T03:46:13Z",
+      "side": 1,
+      "message": "I\u0027d like to see this Java package stuff somewhere else",
+      "range": {
+        "startLine": 72,
+        "startChar": 0,
+        "endLine": 83,
+        "endChar": 5
+      },
+      "revId": "fcd16c7fdc8df4346801a0e3db8afa123d822d65",
+      "serverId": "f182a8af-62ca-4ceb-ab81-14f8fec9c6c5",
+      "unresolved": false
+    }
+  ]
+}
