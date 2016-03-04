@@ -7,10 +7,7 @@
   "source": "git://github.com/openstack/puppet-midonet",
   "project_page": "https://launchpad.net/puppet-midonet",
   "issues_url": "https://bugs.launchpad.net/puppet-midonet",
-  "dependencies": [
-    { "name":"puppetlabs-inifile", "version_requirement": ">=1.0.0 <2.0.0" },
-    { "name":"puppetlabs-stdlib","version_requirement":">= 4.2.0 < 5.0.0" }
-  ],
+  "dependencies": [],
   "tags": ["openstack", "sdn", "midonet"],
   "operatingsystem_support": [
     {
