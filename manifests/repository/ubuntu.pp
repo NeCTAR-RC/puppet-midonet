@@ -33,7 +33,7 @@ class midonet::repository::ubuntu (
 {
   # Adding repository for ubuntu
   notice('Adding midonet sources for Debian-like distribution')
-  if $::lsbdistrelease == '14.04' or $::lsbdistrelease == '12.04' {
+  if $::lsbdistrelease == '16.04' or $::lsbdistrelease == '14.04' or $::lsbdistrelease == '12.04' {
     if $::lsbdistrelease == '12.04' and $openstack_release == 'juno' {
       fail ('Ubuntu 12.04 only supports icehouse')
     }
