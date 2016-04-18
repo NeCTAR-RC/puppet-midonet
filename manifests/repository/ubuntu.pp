@@ -43,6 +43,20 @@ class midonet::repository::ubuntu (
     # time, but it ensures it will not fail for out of date repository info
     # Exec['apt_update'] -> Package<| |>
 
+
+    if $::http_proxy and $::rfc1918_gateway == true {
+      $key_options = "http-proxy=${::http_proxy}"
+    }
+    else {
+      $key_options = false
+    }
+
+    apt::key { 'midonet':
+      key         => $midonet_key,
+      key_source  => $midonet_key_url,
+      key_options => $key_options,
+    }
+
     apt::source {'midonet':
       comment     => 'Midonet apt repository',
       location    => $midonet_repo,
