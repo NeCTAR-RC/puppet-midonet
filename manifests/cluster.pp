@@ -14,6 +14,16 @@ class midonet::cluster($zk_servers)
     require => Package['midonet-cluster'],
   }
 
+  if $::lsbdistcodename == 'xenial' {
+    file {'/etc/systemd/system/midonet-cluster.service':
+      owner  => 'root',
+      group  => 'root',
+      mode   => '0644',
+      source => 'puppet:///modules/midonet/cluster/midonet-cluster.service',
+      before => Service['midonet-cluster'],
+    }
+  }
+
   service {'midonet-cluster':
     ensure  => running,
     enable  => true,
