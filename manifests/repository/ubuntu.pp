@@ -33,7 +33,7 @@ class midonet::repository::ubuntu (
 {
   # Adding repository for ubuntu
   notice('Adding midonet sources for Debian-like distribution')
-  if $::lsbdistrelease == '14.04' or $::lsbdistrelease == '12.04' {
+  if $::lsbdistrelease == '16.04' or $::lsbdistrelease == '14.04' or $::lsbdistrelease == '12.04' {
     if $::lsbdistrelease == '12.04' and $openstack_release == 'juno' {
       fail ('Ubuntu 12.04 only supports icehouse')
     }
@@ -80,9 +80,7 @@ class midonet::repository::ubuntu (
       include_src => false,
     }
   }
-  elsif $::lsbdistrelease == '16.04' {
-    notice('Midonet repo on Xenial is broken, get your packages from somewhere else for now')
-  }
+
   else
   {
     fail("${::lsbdistid} ${::lsbdistrelease} version not supported")
