@@ -2,6 +2,7 @@ class midonet::midolman(
   $zk_servers,
   $resource_type='compute',
   $resource_flavor='large',
+  $template=undef,
 )
 {
 
@@ -21,10 +22,16 @@ class midonet::midolman(
     require => Package['midolman'],
   }
 
+  if $template {
+    $_template = $template
+  } else {
+    $_template = "agent-${resource_type}-${resource_flavor}"
+  }
+
   exec {'mn-set-template':
-    command => "mn-conf template-set -h local -t agent-${resource_type}-${resource_flavor}",
+    command => "mn-conf template-set -h local -t ${_template}",
     path    => '/usr/bin:/bin',
-    unless  => "mn-conf template-get -h local | grep agent-${resource_type}-${resource_flavor}",
+    unless  => "mn-conf template-get -h local | grep ${_template}",
     require => Package['midolman'],
   }
 
