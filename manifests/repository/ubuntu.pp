@@ -61,23 +61,18 @@ class midonet::repository::ubuntu (
       comment     => 'Midonet apt repository',
       location    => $midonet_repo,
       release     => $midonet_stage,
-      key         => $midonet_key,
-      key_source  => $midonet_key_url,
-      include_src => false,
     }
 
     apt::source {'midonet-openstack-integration':
       comment     => 'Midonet apt plugin repository',
       location    => $midonet_openstack_repo,
       release     => $midonet_stage,
-      include_src => false,
     }
 
     apt::source {'midonet-third-party':
       comment     => 'MidoNet 3rd Party Tools and Libraries repository',
       location    => $midonet_thirdparty_repo,
       release     => $midonet_stage,
-      include_src => false,
     }
   }
 
