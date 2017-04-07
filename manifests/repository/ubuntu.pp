@@ -43,7 +43,7 @@ class midonet::repository::ubuntu (
     # Exec['apt_update'] -> Package<| |>
 
 
-    if $::http_proxy and $::rfc1918_gateway == true {
+    if $::http_proxy and str2bool($::rfc1918_gateway) {
       $key_options = "http-proxy=${::http_proxy}"
     }
     else {
