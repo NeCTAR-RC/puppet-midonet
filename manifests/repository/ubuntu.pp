@@ -47,7 +47,7 @@ class midonet::repository::ubuntu (
       $key_options = "http-proxy=${::http_proxy}"
     }
     else {
-      $key_options = false
+      $key_options = undef
     }
 
     apt::key { 'midonet':
