@@ -32,10 +32,7 @@ class midonet::repository::ubuntu (
   $openstack_release)
 {
   # Adding repository for ubuntu
-  if $::lsbdistrelease == '16.04' or $::lsbdistrelease == '14.04' or $::lsbdistrelease == '12.04' {
-    if $::lsbdistrelease == '12.04' and $openstack_release == 'juno' {
-      fail ('Ubuntu 12.04 only supports icehouse')
-    }
+  if $::lsbdistrelease == '18.04' or $::lsbdistrelease == '16.04' or $::lsbdistrelease == '14.04' {
     notice('Adding midonet sources for Debian-like distribution')
 
     # Update the package list each time a package is defined. That takes
