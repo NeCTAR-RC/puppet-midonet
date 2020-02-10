@@ -37,11 +37,6 @@ class midonet::repository::ubuntu (
     source  => $midonet_key_url,
     options => $key_options,
   }
-  -> apt::source {'midonet-openstack-integration':
-    comment     => 'Midonet apt plugin repository',
-    location    => $midonet_openstack_repo,
-    release     => $midonet_stage,
-  }
 
   # Adding repository for ubuntu
   if $::lsbdistrelease == '16.04' or $::lsbdistrelease == '14.04' {
