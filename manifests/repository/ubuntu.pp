@@ -32,39 +32,4 @@ class midonet::repository::ubuntu (
   $openstack_release)
 {
 
-  apt::key { 'midonet':
-    id      => $midonet_key,
-    source  => $midonet_key_url,
-    options => $key_options,
-  }
-
-  # Adding repository for ubuntu
-  if $::lsbdistrelease == '16.04' or $::lsbdistrelease == '14.04' {
-    notice('Adding midonet sources for Debian-like distribution')
-
-    # Update the package list each time a package is defined. That takes
-    # time, but it ensures it will not fail for out of date repository info
-    # Exec['apt_update'] -> Package<| |>
-
-
-    if defined('$::http_proxy') and str2bool($::rfc1918_gateway) {
-      $key_options = "http-proxy=${::http_proxy}"
-    }
-    else {
-      $key_options = undef
-    }
-
-    apt::source {'midonet':
-      comment     => 'Midonet apt repository',
-      location    => $midonet_repo,
-      release     => $midonet_stage,
-    }
-
-    apt::source {'midonet-third-party':
-      comment     => 'MidoNet 3rd Party Tools and Libraries repository',
-      location    => $midonet_thirdparty_repo,
-      release     => $midonet_stage,
-    }
-  }
-
 }
