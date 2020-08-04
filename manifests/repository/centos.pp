@@ -76,6 +76,10 @@ class midonet::repository::centos (
             Yumrepo<| |> -> Exec<| title == 'update-midonet-repos' |>
             Package<| |> -> Exec<| title == 'update-midonet-repos' |>
         }
+        elsif ($::operatingsystemmajrelease == '8') {
+            # There is no MidoNet RHEL/Centos 8 Repo, use but don't fail
+            # because the packages might be in other repos
+        }
         else
         {
             fail("RedHat/CentOS version ${::operatingsystemmajrelease}
