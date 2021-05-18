@@ -7,7 +7,7 @@ Puppet::Type.newtype(:midonet_client_conf) do
     newvalues(/\S+\/\S+/)
   end
 
-  autorequire(:package) do ['python-midonetclient'] end
+  autorequire(:package) do ['python3-midonetclient'] end
 
   newproperty(:value) do
     desc 'The value of the setting to be defined.'

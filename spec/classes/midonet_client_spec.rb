@@ -33,7 +33,7 @@ describe 'midonet::midonet_cli' do
     end
 
     it 'should have the package installed' do
-      is_expected.to contain_package('python-midonetclient')
+      is_expected.to contain_package('python3-midonetclient')
     end
 
     it 'should create .midonetrc file' do
