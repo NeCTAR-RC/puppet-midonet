@@ -37,7 +37,10 @@ class midonet::midonet_cli(
   $tenant_name='admin',
 ) {
 
-  package {'python3-midonetclient':
+  package {'python-midonetclient':
+    ensure  => absent,
+  }
+  -> package {'python3-midonetclient':
     ensure  => present,
   }
 
