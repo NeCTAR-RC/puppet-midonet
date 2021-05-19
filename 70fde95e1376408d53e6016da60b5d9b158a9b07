@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "a13310c3_91e3fa23",
+        "filename": "manifests/midonet_cli.pp",
+        "patchSetId": 2
+      },
+      "lineNbr": 43,
+      "author": {
+        "id": 1000252
+      },
+      "writtenOn": "2021-05-19T22:38:51Z",
+      "side": 1,
+      "message": "Is this the cause of the build failure?",
+      "range": {
+        "startLine": 43,
+        "startChar": 2,
+        "endLine": 43,
+        "endChar": 4
+      },
+      "revId": "70fde95e1376408d53e6016da60b5d9b158a9b07",
+      "serverId": "f182a8af-62ca-4ceb-ab81-14f8fec9c6c5",
+      "unresolved": true
+    }
+  ]
+}
